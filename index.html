@@ -9,11 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
     <!-- 
-    INVESTMENT MASTERPLAN STRATEGY (NABIRE 2026) - REVISION 2:
-    1. Correction: Removed "Premium" labor narrative. Replaced with "Regional Standard" context.
-    2. Visuals: Added significantly more icons to lists and sections for better readability.
-    3. Authority: C. Wijaya, 2026.
-    4. Focus: High-efficiency investment in high-cost region.
+    INVESTMENT MASTERPLAN STRATEGY (NABIRE 2026) - REVISION 6 (CLEAN LAYOUT):
+    1. Roadmap Layout Fix: Switched to a left-aligned vertical timeline. 
+       This prevents the "messy" look of a center line cutting through image grids.
+    2. Number Removal: Removed all "1.", "2.", "Phase 1" numbering. 
+       relies on distinctive Icons and Typography for hierarchy.
+    3. UX: Cleaner image overlays with just the descriptive text.
     -->
 
     <style>
@@ -35,7 +36,8 @@
             border: 1px solid #E2E8F0;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             border-radius: 1.5rem;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
         }
 
         .glass-card:hover {
@@ -62,7 +64,6 @@
             overflow: hidden;
         }
         
-        /* Subtle pattern overlay */
         .gradient-header::before {
             content: "";
             position: absolute;
@@ -70,16 +71,88 @@
             background-image: radial-gradient(circle at 20% 150%, rgba(255,255,255,0.1) 0%, transparent 50%);
             pointer-events: none;
         }
+
+        .img-zoom {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            border-radius: 1rem;
+        }
+        .img-container:hover .img-zoom {
+            transform: scale(1.1);
+        }
+        .img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 0.75rem;
+            padding-top: 2rem;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        
+        .phase-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Clean Timeline Styles */
+        .timeline-container {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #E2E8F0;
+        }
+        .timeline-node {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            background: white;
+            border: 4px solid white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="pb-12 bg-slate-50">
 
-    <!-- HERO SECTION: INVESTMENT PROPOSAL -->
+    <!-- HERO SECTION -->
     <header class="gradient-header pb-24 pt-16 rounded-b-[3rem] shadow-2xl mb-[-4rem]">
         <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
             <div class="inline-flex items-center space-x-2 px-4 py-1.5 mb-8 text-xs font-bold tracking-[0.2em] text-blue-200 uppercase bg-blue-900/50 border border-blue-700/50 rounded-full backdrop-blur-sm">
-                <span>PROJECT CODE: NBR-2500</span>
-                <span class="w-1 h-1 bg-blue-400 rounded-full"></span>
                 <span>TAHUN ANGGARAN 2026</span>
             </div>
             
@@ -90,13 +163,13 @@
             
             <p class="text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed mb-8">
                 Proposal pengembangan infrastruktur peternakan ayam pedaging modern kapasitas 2.500 ekor. 
-                Mengadaptasi standar konstruksi Papua untuk ketahanan aset jangka panjang.
+                Sistem Rak Baterai 2 Lantai untuk efisiensi lahan dan kesehatan ternak.
             </p>
 
             <div class="flex flex-wrap justify-center gap-4 text-sm font-semibold text-slate-300">
                 <span class="px-4 py-2 bg-white/10 rounded-lg backdrop-blur flex items-center">📍 Lokasi: Nabire, Papua</span>
-                <span class="px-4 py-2 bg-white/10 rounded-lg backdrop-blur flex items-center">📐 Tipe: Semi-Close House</span>
-                <span class="px-4 py-2 bg-white/10 rounded-lg backdrop-blur flex items-center">⚡ Sistem: Full LED</span>
+                <span class="px-4 py-2 bg-white/10 rounded-lg backdrop-blur flex items-center">🏢 Struktur: 2 Lantai (7.8m x 11.6m)</span>
+                <span class="px-4 py-2 bg-white/10 rounded-lg backdrop-blur flex items-center">⚡ Sistem: Rak Baterai</span>
             </div>
         </div>
     </header>
@@ -104,7 +177,6 @@
     <!-- EXECUTIVE SUMMARY CARDS -->
     <section class="max-w-7xl mx-auto px-6 mb-16 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Investment Value -->
             <div class="glass-card p-8 bg-white text-center border-b-4 border-blue-600">
                 <div class="icon-box bg-blue-50 text-blue-600 mx-auto mb-4 text-2xl">💰</div>
                 <div class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Total Nilai Investasi (CAPEX)</div>
@@ -112,15 +184,13 @@
                 <div class="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded font-bold">Terukur & Efisien</div>
                 <p class="text-xs text-slate-500 mt-4 px-4">Angka optimal menyesuaikan Indeks Kemahalan Konstruksi (IKK) Papua.</p>
             </div>
-            <!-- Cost Per Unit -->
             <div class="glass-card p-8 bg-white text-center border-b-4 border-orange-500">
                 <div class="icon-box bg-orange-50 text-orange-600 mx-auto mb-4 text-2xl">📈</div>
                 <div class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Investasi Per Ekor</div>
                 <div class="text-4xl font-extrabold text-slate-800 mb-2">Rp 101.210</div>
                 <div class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded font-bold">Kompetitif</div>
-                <p class="text-xs text-slate-500 mt-4 px-4">Di bawah rata-rata biaya pembangunan kandang baru di area Nabire (Rp 120rb+).</p>
+                <p class="text-xs text-slate-500 mt-4 px-4">Sangat efisien untuk sistem kandang susun modern.</p>
             </div>
-            <!-- Timeline -->
             <div class="glass-card p-8 bg-white text-center border-b-4 border-emerald-500">
                 <div class="icon-box bg-emerald-50 text-emerald-600 mx-auto mb-4 text-2xl">⏱️</div>
                 <div class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Target Operasional</div>
@@ -131,10 +201,140 @@
         </div>
     </section>
 
+    <!-- SECTION: TARGET OUTPUT (THE 3 KEY IMAGES) -->
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-slate-800">🎯 Target Output Operasional</h2>
+            <p class="text-slate-500 mt-2">Standar kualitas kandang dan hasil panen yang ditargetkan.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Goal 1: Rak Baterai -->
+            <div class="glass-card img-container group h-72">
+                <div class="absolute top-4 left-4 z-10 bg-blue-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Infrastruktur</div>
+                <img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/kandang%20rak%20baterai.jpeg" alt="Rak Baterai Modern" class="img-zoom">
+                <div class="img-overlay">
+                    <h4 class="font-bold text-lg text-white">Sistem Rak Baterai</h4>
+                    <p class="text-xs text-blue-100 mt-1">Efisiensi ruang & higienitas tinggi</p>
+                </div>
+            </div>
+            
+            <!-- Goal 2: Chick In -->
+            <div class="glass-card img-container group h-72">
+                <div class="absolute top-4 left-4 z-10 bg-emerald-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Operasional</div>
+                <img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/chckin.jpeg" alt="Proses Chick In" class="img-zoom">
+                <div class="img-overlay">
+                    <h4 class="font-bold text-lg text-white">Kenyamanan Ternak</h4>
+                    <p class="text-xs text-emerald-100 mt-1">Lingkungan tumbuh yang optimal</p>
+                </div>
+            </div>
+
+            <!-- Goal 3: Harvest -->
+            <div class="glass-card img-container group h-72">
+                <div class="absolute top-4 left-4 z-10 bg-orange-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Profitabilitas</div>
+                <img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/ayam%20siap%20panen.jpeg" alt="Siap Panen" class="img-zoom">
+                <div class="img-overlay">
+                    <h4 class="font-bold text-lg text-white">Hasil Panen Maksimal</h4>
+                    <p class="text-xs text-orange-100 mt-1">Target bobot & FCR tercapai</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: CONSTRUCTION ROADMAP (CLEAN LAYOUT) -->
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-slate-800">🚧 Roadmap Progress Pembangunan</h2>
+            <p class="text-slate-500 mt-2">Rekaman visual tahapan konstruksi dari nol hingga operasional.</p>
+        </div>
+
+        <div class="space-y-12">
+            
+            <!-- PHASE 1 -->
+            <div class="timeline-container">
+                <div class="timeline-line bg-blue-200"></div>
+                <div class="timeline-node text-blue-600">🏗️</div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-slate-800">Struktur & Pondasi</h3>
+                    <p class="text-sm text-slate-500">Persiapan lahan hingga penyelesaian struktur rangka utama.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(1).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Leveling Laser</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(2).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Drainase Air</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(3).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Tiang Utama</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(4).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Rangka Lt 2</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(5).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Tulang Lantai</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(7).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Pemasangan Atap</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(8).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Lantai 2 Selesai</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(9).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Progress 50%</p></div></div>
+                </div>
+            </div>
+
+            <!-- PHASE 2 -->
+            <div class="timeline-container">
+                <div class="timeline-line bg-orange-200"></div>
+                <div class="timeline-node text-orange-600">🧱</div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-slate-800">Arsitektur & Interior</h3>
+                    <p class="text-sm text-slate-500">Pemasangan dinding, plafon, dan finishing bangunan.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(10).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Tampak Luar</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(11).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Dinding Lt 1</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(18).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Instalasi Plafon</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(19).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Plafon Selesai</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(20).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Progress 80%</p></div></div>
+                </div>
+            </div>
+
+            <!-- PHASE 3 -->
+            <div class="timeline-container">
+                <div class="timeline-line bg-emerald-200"></div>
+                <div class="timeline-node text-emerald-600">🔧</div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-slate-800">Instalasi Equipment</h3>
+                    <p class="text-sm text-slate-500">Perakitan dan instalasi sistem kandang rak baterai.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(6).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Kedatangan Alat</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(12).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Perakitan Rak</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(13).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Leveling Laser</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(14).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Pasang Slat</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(15).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Detail Slat</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(16).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Finishing Rak</p></div></div>
+                    <div class="img-container group shadow-md col-span-2"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(17).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Rak Baterai Siap</p></div></div>
+                </div>
+            </div>
+
+            <!-- PHASE 4 -->
+            <div class="timeline-container">
+                <div class="timeline-line bg-slate-200"></div>
+                <div class="timeline-node text-slate-600">✨</div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-slate-800">Operasional (Chick-In)</h3>
+                    <p class="text-sm text-slate-500">Sanitasi, persiapan akhir, dan pemasukan bibit (DOC).</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(21).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Sanitasi & Siap</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(22).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Proses Chick-In</p></div></div>
+                    <div class="img-container group shadow-md"><img src="https://raw.githubusercontent.com/rcwpt/nbxbroiler/main/(23).jpg" class="img-zoom"><div class="img-overlay"><p class="font-bold text-xs">Operasional Penuh</p></div></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- STRATEGIC ALLOCATION -->
     <section class="max-w-7xl mx-auto px-6 mb-16">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <!-- Left: Narrative -->
             <div class="lg:col-span-5 flex flex-col justify-center">
                 <div class="flex items-center mb-4">
                     <span class="icon-box bg-blue-100 text-blue-600 rounded-full text-xl w-10 h-10 mr-3">💎</span>
@@ -142,7 +342,7 @@
                 </div>
                 <p class="text-slate-600 mb-6 text-lg leading-relaxed border-l-4 border-blue-200 pl-4">
                     Struktur pembiayaan ini dirancang realistis mengikuti kondisi pasar Papua.
-                    Dominasi biaya pada <strong>Tenaga Kerja (59%)</strong> adalah cerminan standar upah regional untuk menjamin ketersediaan tukang terampil.
+                    Dominasi biaya pada <strong>Tenaga Kerja (59%)</strong> adalah cerminan standar upah regional untuk menjamin ketersediaan tukang terampil pada konstruksi 2 lantai.
                 </p>
                 <div class="space-y-4">
                     <div class="flex items-start p-4 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
@@ -161,7 +361,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Right: Chart -->
             <div class="lg:col-span-7 glass-card p-8">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Komposisi Penggunaan Dana</h3>
@@ -184,8 +383,6 @@
                         <h2 class="text-2xl font-bold text-slate-800">Struktur Tim Lapangan</h2>
                     </div>
                     <p class="text-slate-500 mb-8 text-sm">Analisa beban gaji harian tim untuk menjamin kecepatan pengerjaan.</p>
-                    
-                    <!-- Pie Chart for Wages -->
                     <div class="chart-container" style="height: 300px;">
                         <canvas id="laborPieChart"></canvas>
                     </div>
@@ -195,7 +392,6 @@
                         <span class="flex items-center"><span class="w-2 h-2 bg-blue-300 rounded-full mr-1"></span>Helper</span>
                     </div>
                 </div>
-                
                 <div class="p-10 flex flex-col justify-center bg-white">
                     <h3 class="font-bold text-slate-800 mb-6 text-lg border-b pb-2">Kualifikasi & Standar Regional</h3>
                     <ul class="space-y-6">
@@ -203,30 +399,14 @@
                             <div class="icon-box bg-blue-50 text-blue-600 text-lg w-10 h-10 rounded-lg mr-4 mt-1">1️⃣</div>
                             <div>
                                 <h4 class="font-bold text-slate-800">Standar Upah Wajar</h4>
-                                <p class="text-sm text-slate-600">
-                                    Angka Rp 300rb (Kepala) dan Rp 200rb (Helper) adalah <strong>harga pasar yang berlaku</strong> di Nabire/Timika. 
-                                    Menekan harga di bawah ini berisiko mendapatkan tenaga kerja tidak terampil.
-                                </p>
+                                <p class="text-sm text-slate-600">Angka Rp 300rb (Kepala) dan Rp 200rb (Helper) adalah <strong>harga pasar yang berlaku</strong> di Nabire/Timika.</p>
                             </div>
                         </li>
                         <li class="flex items-start">
                             <div class="icon-box bg-blue-50 text-blue-600 text-lg w-10 h-10 rounded-lg mr-4 mt-1">⚡</div>
                             <div>
                                 <h4 class="font-bold text-slate-800">Rasio Efisiensi</h4>
-                                <p class="text-sm text-slate-600">
-                                    Komposisi <strong>1 Kepala : 1 Tukang : 2 Helper</strong> dirancang untuk kecepatan mobilisasi material berat, 
-                                    mengingat medan kerja yang menantang.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="icon-box bg-blue-50 text-blue-600 text-lg w-10 h-10 rounded-lg mr-4 mt-1">🤝</div>
-                            <div>
-                                <h4 class="font-bold text-slate-800">Komitmen Kontrak</h4>
-                                <p class="text-sm text-slate-600">
-                                    Nilai borongan Rp 150 Juta mengikat kontraktor untuk menyelesaikan proyek dalam <strong>60 hari kalender</strong> 
-                                    tanpa adanya biaya tambahan (Fixed Cost).
-                                </p>
+                                <p class="text-sm text-slate-600">Komposisi <strong>1 Kepala : 1 Tukang : 2 Helper</strong> dirancang untuk mobilisasi material pada bangunan 2 lantai.</p>
                             </div>
                         </li>
                     </ul>
@@ -240,109 +420,29 @@
         <h2 class="text-3xl font-bold text-slate-800 mb-8 text-center flex items-center justify-center">
             <span class="mr-3">🏗️</span> Spesifikasi Material & Aset
         </h2>
-        
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Tech Specs List -->
             <div class="lg:col-span-1 space-y-4">
                 <div class="glass-card p-6 border-l-4 border-orange-500 hover:bg-orange-50 transition">
                     <div class="flex justify-between items-start mb-2">
-                        <div class="flex items-center">
-                            <span class="text-xl mr-2">🐔</span>
-                            <h4 class="font-bold text-slate-800">Sistem Kandang</h4>
-                        </div>
-                        <span class="text-[10px] uppercase font-bold bg-orange-100 text-orange-700 px-2 py-1 rounded">Victor Series</span>
+                        <div class="flex items-center"><span class="text-xl mr-2">🐔</span><h4 class="font-bold text-slate-800">Sistem Kandang</h4></div>
+                        <span class="text-[10px] uppercase font-bold bg-orange-100 text-orange-700 px-2 py-1 rounded">Rak Baterai</span>
                     </div>
-                    <p class="text-sm text-slate-500 mb-3">Paket peralatan lengkap termasuk feeding system dan watering system otomatis.</p>
+                    <p class="text-sm text-slate-500 mb-3">Sistem 2 lantai untuk memaksimalkan populasi 2.500 ekor dalam luas 7.8m x 11.6m.</p>
                     <div class="text-2xl font-bold text-slate-800">Rp 55.2 Jt</div>
                 </div>
-
                 <div class="glass-card p-6 border-l-4 border-slate-500 hover:bg-slate-50 transition">
                     <div class="flex justify-between items-start mb-2">
-                        <div class="flex items-center">
-                            <span class="text-xl mr-2">🪵</span>
-                            <h4 class="font-bold text-slate-800">Struktur Utama</h4>
-                        </div>
+                        <div class="flex items-center"><span class="text-xl mr-2">🪵</span><h4 class="font-bold text-slate-800">Struktur Utama</h4></div>
                         <span class="text-[10px] uppercase font-bold bg-slate-100 text-slate-700 px-2 py-1 rounded">Kayu Kelas I/II</span>
                     </div>
-                    <p class="text-sm text-slate-500 mb-3">Rangka kayu solid tahan rayap & cuaca lembab, ideal untuk bio-security.</p>
+                    <p class="text-sm text-slate-500 mb-3">Konstruksi 2 lantai kokoh dengan pondasi batu bata dan rangka kayu solid.</p>
                     <div class="text-2xl font-bold text-slate-800">Rp 15.5 Jt</div>
                 </div>
-
-                <div class="glass-card p-6 border-l-4 border-emerald-500 hover:bg-emerald-50 transition">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="flex items-center">
-                            <span class="text-xl mr-2">💡</span>
-                            <h4 class="font-bold text-slate-800">Kelistrikan</h4>
-                        </div>
-                        <span class="text-[10px] uppercase font-bold bg-emerald-100 text-emerald-700 px-2 py-1 rounded">LED 200M</span>
-                    </div>
-                    <p class="text-sm text-slate-500 mb-3">Sistem pencahayaan merata untuk menstimulasi pertumbuhan ayam (Lux optimal).</p>
-                    <div class="text-2xl font-bold text-slate-800">Rp 3.0 Jt</div>
-                </div>
             </div>
-
-            <!-- Material Chart -->
             <div class="lg:col-span-2 glass-card p-8">
                 <h3 class="text-sm font-bold text-slate-400 uppercase mb-6 tracking-wider">Top 5 Investasi Aset Fisik</h3>
                 <div class="chart-container">
                     <canvas id="materialChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ROADMAP -->
-    <section class="max-w-5xl mx-auto px-6 mb-24">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-slate-800">📅 Roadmap Menuju Operasional</h2>
-            <p class="text-slate-500">Jadwal eksekusi ketat selama 60 hari kerja.</p>
-        </div>
-
-        <div class="relative">
-            <div class="absolute left-1/2 -ml-0.5 w-0.5 h-full bg-slate-200 hidden md:block"></div>
-            
-            <!-- Step 1 -->
-            <div class="flex flex-col md:flex-row items-center justify-between mb-10 group">
-                <div class="md:w-5/12 text-right pr-8">
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition">Land Clearing & Pondasi</h3>
-                    <p class="text-sm text-slate-500 mt-1">
-                        <span class="inline-block mr-2">🗓️</span>Minggu 1-2 
-                        <br>Persiapan lahan dan struktur dasar batu bata.
-                    </p>
-                </div>
-                <div class="z-10 w-12 h-12 rounded-full bg-white border-4 border-blue-600 flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition">🚜</div>
-                <div class="md:w-5/12 pl-8 hidden md:block">
-                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">TAHAP AWAL</span>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="flex flex-col md:flex-row items-center justify-between mb-10 group">
-                <div class="md:w-5/12 text-right pr-8 hidden md:block">
-                    <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded">KONSTRUKSI UTAMA</span>
-                </div>
-                <div class="z-10 w-12 h-12 rounded-full bg-white border-4 border-orange-500 flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition">🔨</div>
-                <div class="md:w-5/12 pl-8">
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-orange-600 transition">Konstruksi Rangka & Atap</h3>
-                    <p class="text-sm text-slate-500 mt-1">
-                        <span class="inline-block mr-2">🗓️</span>Minggu 3-5 
-                        <br>Pemasangan Kayu, Atap, dan Dinding Layar.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="flex flex-col md:flex-row items-center justify-between group">
-                <div class="md:w-5/12 text-right pr-8">
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-emerald-600 transition">Instalasi Alat & Serah Terima</h3>
-                    <p class="text-sm text-slate-500 mt-1">
-                        <span class="inline-block mr-2">🗓️</span>Minggu 6-8 
-                        <br>Pemasangan Paket Victor, Listrik, & Uji Coba.
-                    </p>
-                </div>
-                <div class="z-10 w-12 h-12 rounded-full bg-emerald-500 border-4 border-white flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition">✨</div>
-                <div class="md:w-5/12 pl-8 hidden md:block">
-                    <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">SIAP OPERASI</span>
                 </div>
             </div>
         </div>
@@ -353,9 +453,7 @@
         <div class="max-w-4xl mx-auto text-center px-6">
             <h3 class="text-2xl font-bold text-white mb-2">C. Wijaya</h3>
             <p class="text-slate-500 mb-8 uppercase tracking-widest text-xs">Project Consultant & Analyst</p>
-            
             <div class="w-24 h-1 bg-blue-600 mx-auto mb-8 rounded-full"></div>
-            
             <p class="text-sm text-slate-400 leading-relaxed max-w-lg mx-auto">
                 Dokumen ini disusun berdasarkan analisa data lapangan Timika dan disesuaikan untuk standar Nabire. 
                 Angka yang tertera adalah estimasi terbaik untuk Tahun Anggaran 2026.
@@ -366,7 +464,6 @@
 
     <!-- JAVASCRIPT FOR CHARTS -->
     <script>
-        // --- UTILS ---
         function wrapLabel(label) {
             if (label.length <= 16) return label;
             const words = label.split(' ');
@@ -402,7 +499,6 @@
             }
         };
 
-        // 1. GRAND DESIGN CHART (Donut)
         new Chart(document.getElementById('grandDesignChart'), {
             type: 'doughnut',
             data: {
@@ -425,7 +521,6 @@
             }
         });
 
-        // 2. LABOR PIE CHART
         new Chart(document.getElementById('laborPieChart'), {
             type: 'pie',
             data: {
@@ -456,7 +551,6 @@
             }
         });
 
-        // 3. MATERIAL CHART
         new Chart(document.getElementById('materialChart'), {
             type: 'bar',
             data: {
